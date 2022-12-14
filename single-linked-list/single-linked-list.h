@@ -123,6 +123,7 @@ public:
 		}
 		
 		BasicIterator& operator++() noexcept {
+			assert(node_ != nullptr);
 			node_ = node_->next_node;
 			return *this;
 		}
@@ -134,10 +135,12 @@ public:
 		}
 		
 		[[nodiscard]] reference operator*() const noexcept {
+			assert(node_ != nullptr);
 			return node_->value;
 		}
 		
 		[[nodiscard]] pointer operator->() const noexcept {
+			assert(node_ != nullptr);
 			return &(node_->value);
 		}
 		
@@ -202,6 +205,7 @@ public:
 	}
 	
 	Iterator InsertAfter(ConstIterator pos, const Type& value) {
+		assert(pos.node_ != nullptr);
 		auto new_item = new Node(value);
 		new_item->next_node = pos.node_->next_node;
 		pos.node_->next_node = new_item;
@@ -223,6 +227,7 @@ public:
 	
 	void PopFront() {
 		auto tmp = head_.next_node;
+		assert(head_.next_node != nullptr);
 		head_.next_node = head_.next_node->next_node;
 		delete tmp;
 		--size_;
@@ -281,4 +286,3 @@ template <typename Type>
 bool operator>=(const SingleLinkedList<Type>& lhs, const SingleLinkedList<Type>& rhs) {
 	return (lhs == rhs) || (lhs > rhs);
 }
-
