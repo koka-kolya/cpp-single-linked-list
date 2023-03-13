@@ -1,5 +1,5 @@
 #include "single-linked-list.h"
-
+#include <iostream>
 #include <cassert>
 
 // Эта функция проверяет работу класса SingleLinkedList
@@ -57,7 +57,7 @@ void Test() {
 		{
 			SingleLinkedList<int> lst{1, 2, 3};
 			auto inserted_item_pos = lst.InsertAfter(lst.before_begin(), 123);
-			
+
 			assert(inserted_item_pos == lst.begin());
 			assert(inserted_item_pos != lst.end());
 			assert(*inserted_item_pos == 123);
@@ -146,5 +146,7 @@ void Test() {
 }
 
 int main() {
+	using namespace std::literals;
 	Test();
+	std::cout << "Test passed!"s << std::endl;
 }

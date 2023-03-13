@@ -216,7 +216,8 @@ public:
 	Iterator EraseAfter(ConstIterator pos) noexcept {
 		if (pos != end()) {
 			auto tmp = pos.node_->next_node; // tmp сможем безопасно удалить
-			if (tmp != nullptr) { // убеждаемся, что не получим исключения, обратившись к элементу через один от pos
+			if (tmp != nullptr) { // убеждаемся, что не получим исключения,
+								  // обратившись к элементу через один от pos
 				pos.node_->next_node = tmp->next_node;
 			}
 			delete tmp;
